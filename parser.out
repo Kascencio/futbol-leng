@@ -1,0 +1,608 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> function_list
+Rule 2     function_list -> function_list function
+Rule 3     function_list -> function
+Rule 4     function -> JUGADOR ID LPAREN param_list RPAREN COLON statement
+Rule 5     param_list -> param_list COMMA ID
+Rule 6     param_list -> ID
+Rule 7     param_list -> empty
+Rule 8     statement -> REMATE expression
+Rule 9     expression -> expression PLUS expression
+Rule 10    expression -> expression MINUS expression
+Rule 11    expression -> expression TIMES expression
+Rule 12    expression -> expression DIVIDE expression
+Rule 13    expression -> primary
+Rule 14    primary -> NUMBER
+Rule 15    primary -> ID
+Rule 16    primary -> ID LPAREN arg_list RPAREN
+Rule 17    primary -> LPAREN expression RPAREN
+Rule 18    arg_list -> arg_list COMMA expression
+Rule 19    arg_list -> expression
+Rule 20    arg_list -> empty
+Rule 21    empty -> <empty>
+
+Terminals, with rules where they appear
+
+COLON                : 4
+COMMA                : 5 18
+DIVIDE               : 12
+ID                   : 4 5 6 15 16
+JUGADOR              : 4
+LPAREN               : 4 16 17
+MINUS                : 10
+NUMBER               : 14
+PLUS                 : 9
+REMATE               : 8
+RPAREN               : 4 16 17
+TIMES                : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+arg_list             : 16 18
+empty                : 7 20
+expression           : 8 9 9 10 10 11 11 12 12 17 18 19
+function             : 2 3
+function_list        : 1 2
+param_list           : 4 5
+primary              : 13
+program              : 0
+statement            : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . function_list
+    (2) function_list -> . function_list function
+    (3) function_list -> . function
+    (4) function -> . JUGADOR ID LPAREN param_list RPAREN COLON statement
+
+    JUGADOR         shift and go to state 4
+
+    program                        shift and go to state 1
+    function_list                  shift and go to state 2
+    function                       shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> function_list .
+    (2) function_list -> function_list . function
+    (4) function -> . JUGADOR ID LPAREN param_list RPAREN COLON statement
+
+    $end            reduce using rule 1 (program -> function_list .)
+    JUGADOR         shift and go to state 4
+
+    function                       shift and go to state 5
+
+state 3
+
+    (3) function_list -> function .
+
+    JUGADOR         reduce using rule 3 (function_list -> function .)
+    $end            reduce using rule 3 (function_list -> function .)
+
+
+state 4
+
+    (4) function -> JUGADOR . ID LPAREN param_list RPAREN COLON statement
+
+    ID              shift and go to state 6
+
+
+state 5
+
+    (2) function_list -> function_list function .
+
+    JUGADOR         reduce using rule 2 (function_list -> function_list function .)
+    $end            reduce using rule 2 (function_list -> function_list function .)
+
+
+state 6
+
+    (4) function -> JUGADOR ID . LPAREN param_list RPAREN COLON statement
+
+    LPAREN          shift and go to state 7
+
+
+state 7
+
+    (4) function -> JUGADOR ID LPAREN . param_list RPAREN COLON statement
+    (5) param_list -> . param_list COMMA ID
+    (6) param_list -> . ID
+    (7) param_list -> . empty
+    (21) empty -> .
+
+    ID              shift and go to state 8
+    RPAREN          reduce using rule 21 (empty -> .)
+    COMMA           reduce using rule 21 (empty -> .)
+
+    param_list                     shift and go to state 9
+    empty                          shift and go to state 10
+
+state 8
+
+    (6) param_list -> ID .
+
+    RPAREN          reduce using rule 6 (param_list -> ID .)
+    COMMA           reduce using rule 6 (param_list -> ID .)
+
+
+state 9
+
+    (4) function -> JUGADOR ID LPAREN param_list . RPAREN COLON statement
+    (5) param_list -> param_list . COMMA ID
+
+    RPAREN          shift and go to state 11
+    COMMA           shift and go to state 12
+
+
+state 10
+
+    (7) param_list -> empty .
+
+    RPAREN          reduce using rule 7 (param_list -> empty .)
+    COMMA           reduce using rule 7 (param_list -> empty .)
+
+
+state 11
+
+    (4) function -> JUGADOR ID LPAREN param_list RPAREN . COLON statement
+
+    COLON           shift and go to state 13
+
+
+state 12
+
+    (5) param_list -> param_list COMMA . ID
+
+    ID              shift and go to state 14
+
+
+state 13
+
+    (4) function -> JUGADOR ID LPAREN param_list RPAREN COLON . statement
+    (8) statement -> . REMATE expression
+
+    REMATE          shift and go to state 16
+
+    statement                      shift and go to state 15
+
+state 14
+
+    (5) param_list -> param_list COMMA ID .
+
+    RPAREN          reduce using rule 5 (param_list -> param_list COMMA ID .)
+    COMMA           reduce using rule 5 (param_list -> param_list COMMA ID .)
+
+
+state 15
+
+    (4) function -> JUGADOR ID LPAREN param_list RPAREN COLON statement .
+
+    JUGADOR         reduce using rule 4 (function -> JUGADOR ID LPAREN param_list RPAREN COLON statement .)
+    $end            reduce using rule 4 (function -> JUGADOR ID LPAREN param_list RPAREN COLON statement .)
+
+
+state 16
+
+    (8) statement -> REMATE . expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 17
+    primary                        shift and go to state 18
+
+state 17
+
+    (8) statement -> REMATE expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    JUGADOR         reduce using rule 8 (statement -> REMATE expression .)
+    $end            reduce using rule 8 (statement -> REMATE expression .)
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+
+state 18
+
+    (13) expression -> primary .
+
+    PLUS            reduce using rule 13 (expression -> primary .)
+    MINUS           reduce using rule 13 (expression -> primary .)
+    TIMES           reduce using rule 13 (expression -> primary .)
+    DIVIDE          reduce using rule 13 (expression -> primary .)
+    JUGADOR         reduce using rule 13 (expression -> primary .)
+    $end            reduce using rule 13 (expression -> primary .)
+    RPAREN          reduce using rule 13 (expression -> primary .)
+    COMMA           reduce using rule 13 (expression -> primary .)
+
+
+state 19
+
+    (14) primary -> NUMBER .
+
+    PLUS            reduce using rule 14 (primary -> NUMBER .)
+    MINUS           reduce using rule 14 (primary -> NUMBER .)
+    TIMES           reduce using rule 14 (primary -> NUMBER .)
+    DIVIDE          reduce using rule 14 (primary -> NUMBER .)
+    JUGADOR         reduce using rule 14 (primary -> NUMBER .)
+    $end            reduce using rule 14 (primary -> NUMBER .)
+    RPAREN          reduce using rule 14 (primary -> NUMBER .)
+    COMMA           reduce using rule 14 (primary -> NUMBER .)
+
+
+state 20
+
+    (15) primary -> ID .
+    (16) primary -> ID . LPAREN arg_list RPAREN
+
+    PLUS            reduce using rule 15 (primary -> ID .)
+    MINUS           reduce using rule 15 (primary -> ID .)
+    TIMES           reduce using rule 15 (primary -> ID .)
+    DIVIDE          reduce using rule 15 (primary -> ID .)
+    JUGADOR         reduce using rule 15 (primary -> ID .)
+    $end            reduce using rule 15 (primary -> ID .)
+    RPAREN          reduce using rule 15 (primary -> ID .)
+    COMMA           reduce using rule 15 (primary -> ID .)
+    LPAREN          shift and go to state 26
+
+
+state 21
+
+    (17) primary -> LPAREN . expression RPAREN
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 27
+    primary                        shift and go to state 18
+
+state 22
+
+    (9) expression -> expression PLUS . expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 28
+    primary                        shift and go to state 18
+
+state 23
+
+    (10) expression -> expression MINUS . expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 29
+    primary                        shift and go to state 18
+
+state 24
+
+    (11) expression -> expression TIMES . expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 30
+    primary                        shift and go to state 18
+
+state 25
+
+    (12) expression -> expression DIVIDE . expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 31
+    primary                        shift and go to state 18
+
+state 26
+
+    (16) primary -> ID LPAREN . arg_list RPAREN
+    (18) arg_list -> . arg_list COMMA expression
+    (19) arg_list -> . expression
+    (20) arg_list -> . empty
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (21) empty -> .
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    RPAREN          reduce using rule 21 (empty -> .)
+    COMMA           reduce using rule 21 (empty -> .)
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    arg_list                       shift and go to state 32
+    expression                     shift and go to state 33
+    empty                          shift and go to state 34
+    primary                        shift and go to state 18
+
+state 27
+
+    (17) primary -> LPAREN expression . RPAREN
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    RPAREN          shift and go to state 35
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+
+state 28
+
+    (9) expression -> expression PLUS expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    PLUS            reduce using rule 9 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 9 (expression -> expression PLUS expression .)
+    JUGADOR         reduce using rule 9 (expression -> expression PLUS expression .)
+    $end            reduce using rule 9 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 9 (expression -> expression PLUS expression .)
+    COMMA           reduce using rule 9 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+  ! TIMES           [ reduce using rule 9 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 9 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+
+
+state 29
+
+    (10) expression -> expression MINUS expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    PLUS            reduce using rule 10 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 10 (expression -> expression MINUS expression .)
+    JUGADOR         reduce using rule 10 (expression -> expression MINUS expression .)
+    $end            reduce using rule 10 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 10 (expression -> expression MINUS expression .)
+    COMMA           reduce using rule 10 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+  ! TIMES           [ reduce using rule 10 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+
+
+state 30
+
+    (11) expression -> expression TIMES expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    PLUS            reduce using rule 11 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 11 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 11 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 11 (expression -> expression TIMES expression .)
+    JUGADOR         reduce using rule 11 (expression -> expression TIMES expression .)
+    $end            reduce using rule 11 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 11 (expression -> expression TIMES expression .)
+    COMMA           reduce using rule 11 (expression -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+  ! TIMES           [ shift and go to state 24 ]
+  ! DIVIDE          [ shift and go to state 25 ]
+
+
+state 31
+
+    (12) expression -> expression DIVIDE expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    PLUS            reduce using rule 12 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 12 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 12 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 12 (expression -> expression DIVIDE expression .)
+    JUGADOR         reduce using rule 12 (expression -> expression DIVIDE expression .)
+    $end            reduce using rule 12 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 12 (expression -> expression DIVIDE expression .)
+    COMMA           reduce using rule 12 (expression -> expression DIVIDE expression .)
+
+  ! PLUS            [ shift and go to state 22 ]
+  ! MINUS           [ shift and go to state 23 ]
+  ! TIMES           [ shift and go to state 24 ]
+  ! DIVIDE          [ shift and go to state 25 ]
+
+
+state 32
+
+    (16) primary -> ID LPAREN arg_list . RPAREN
+    (18) arg_list -> arg_list . COMMA expression
+
+    RPAREN          shift and go to state 36
+    COMMA           shift and go to state 37
+
+
+state 33
+
+    (19) arg_list -> expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    RPAREN          reduce using rule 19 (arg_list -> expression .)
+    COMMA           reduce using rule 19 (arg_list -> expression .)
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
+
+state 34
+
+    (20) arg_list -> empty .
+
+    RPAREN          reduce using rule 20 (arg_list -> empty .)
+    COMMA           reduce using rule 20 (arg_list -> empty .)
+
+
+state 35
+
+    (17) primary -> LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    JUGADOR         reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    $end            reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 17 (primary -> LPAREN expression RPAREN .)
+
+
+state 36
+
+    (16) primary -> ID LPAREN arg_list RPAREN .
+
+    PLUS            reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    MINUS           reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    TIMES           reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    DIVIDE          reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    JUGADOR         reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    $end            reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    RPAREN          reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+    COMMA           reduce using rule 16 (primary -> ID LPAREN arg_list RPAREN .)
+
+
+state 37
+
+    (18) arg_list -> arg_list COMMA . expression
+    (9) expression -> . expression PLUS expression
+    (10) expression -> . expression MINUS expression
+    (11) expression -> . expression TIMES expression
+    (12) expression -> . expression DIVIDE expression
+    (13) expression -> . primary
+    (14) primary -> . NUMBER
+    (15) primary -> . ID
+    (16) primary -> . ID LPAREN arg_list RPAREN
+    (17) primary -> . LPAREN expression RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 20
+    LPAREN          shift and go to state 21
+
+    expression                     shift and go to state 38
+    primary                        shift and go to state 18
+
+state 38
+
+    (18) arg_list -> arg_list COMMA expression .
+    (9) expression -> expression . PLUS expression
+    (10) expression -> expression . MINUS expression
+    (11) expression -> expression . TIMES expression
+    (12) expression -> expression . DIVIDE expression
+
+    RPAREN          reduce using rule 18 (arg_list -> arg_list COMMA expression .)
+    COMMA           reduce using rule 18 (arg_list -> arg_list COMMA expression .)
+    PLUS            shift and go to state 22
+    MINUS           shift and go to state 23
+    TIMES           shift and go to state 24
+    DIVIDE          shift and go to state 25
+
