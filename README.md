@@ -36,7 +36,19 @@
   Puedes instalarlo con pip:
   ```bash
   pip install ply
-  
+
+Uso
+El repositorio incluye el intérprete en el archivo futbolang_interpreter.py. Para ejecutar un programa escrito en Futbolang, utiliza el siguiente comando:
+
+```bash
+python futbolang_interpreter.py <archivo_fuente.futbol>
+```
+Por ejemplo, si tienes un archivo llamado ejemplo.futbol:
+```bash
+python futbolang_interpreter.py ejemplo.futbol
+```
+
+
 ## Ejemplo 1: Suma Simple
 ```bash
 Archivo: ejemplo.futbol
