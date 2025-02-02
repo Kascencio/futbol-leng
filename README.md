@@ -36,14 +36,17 @@
   Puedes instalarlo con pip:
   ```bash
   pip install ply
+  
 ## Ejemplo 1: Suma Simple
+```bash
 Archivo: ejemplo.futbol
 jugador sumar(a, b):
     remate a pase b
 
 jugador principal():
     remate sumar(10, 20)
-- Explicación:
+```
+- ** Explicación: **
 
 jugador sumar(a, b): define una función llamada sumar que recibe dos parámetros.
 remate a pase b retorna la suma de a y b (usa pase para la suma).
@@ -52,6 +55,7 @@ Resultado esperado: 30.
 
 ## Ejemplo 2: Cuadrado y Suma de Cuadrados
 Archivo: ejemplo2.futbol
+```bash
 jugador cuadrado(x):
     remate x tiro x
 
@@ -60,8 +64,9 @@ jugador sumaCuadrados(a, b):
 
 jugador principal():
     remate sumaCuadrados(3, 4)
+```
 
-- Explicación:
+- ** Explicación: **
 
 jugador cuadrado(x): define una función que calcula el cuadrado de x (usa tiro para la multiplicación).
 jugador sumaCuadrados(a, b): retorna la suma de los cuadrados de a y b.
@@ -71,12 +76,13 @@ Resultado esperado: 9 + 16 = 25.
 ## Ejemplo 3: Cálculo del Promedio
 Archivo: ejemplo3.futbol
 
+```bash
 jugador promedio(a, b):
     remate (a pase b) intercepcion 2
 
 jugador principal():
     remate promedio(10, 20)
-
+```
 - Explicación:
 
 jugador promedio(a, b): calcula el promedio de a y b sumándolos (a pase b) y dividiendo el resultado entre 2 (intercepcion 2).
@@ -85,7 +91,7 @@ Resultado esperado: 15.
 
 ## Ejemplo 4: Operación Compuesta con Funciones Anidadas
 Archivo: ejemplo4.futbol
-
+```bash
 jugador suma(a, b):
     remate a pase b
 
@@ -97,7 +103,7 @@ jugador operacion(x, y):
 
 jugador principal():
     remate operacion(10, 3)
-
+```
 - Explicación:
 
 Se definen dos funciones básicas:
