@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDECOLON COMMA DIVIDE ID JUGADOR LPAREN MINUS NUMBER PLUS REMATE RPAREN TIMESprogram : function_listfunction_list : function_list function\n                     | functionfunction : JUGADOR ID LPAREN param_list RPAREN COLON statementparam_list : param_list COMMA ID\n                  | ID\n                  | emptystatement : REMATE expression\n    expression : expression PLUS expression\n               | expression MINUS expression\n               | expression TIMES expression\n               | expression DIVIDE expression\n               | primary\n    primary : NUMBERprimary : IDprimary : ID LPAREN arg_list RPARENprimary : LPAREN expression RPARENarg_list : arg_list COMMA expression\n                | expression\n                | emptyempty :'
+_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDEAND ASSIGN COLON COMMA DIVIDE ELIF ELSE EN EQ FOR GE GT ID IF JUGADOR LE LPAREN LT MINUS NEWLINE NOP NUMBER PLUS RANGE REMATE RPAREN STRING TIMESprogram : function_listfunction_list : function_list function\n                     | functionfunction : JUGADOR ID LPAREN param_list RPAREN COLON NEWLINE blockparam_list : param_list COMMA ID\n                  | ID\n                  | emptyblock : statement\n             | block NEWLINE statementstatement : ID ASSIGN expressionstatement : REMATE expressionstatement : IF if_condition COLON NEWLINE block else_clauseif_condition : LPAREN expression RPAREN\n                    | expressionelse_clause : ELSE COLON NEWLINE block\n                   | emptystatement : FOR ID EN RANGE LPAREN expression RPAREN COLON NEWLINE blockstatement : expressionstatement : NOPexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expressionexpression : expression GT expression\n                  | expression LT expression\n                  | expression GE expression\n                  | expression LE expression\n                  | expression EQ expressionexpression : expression AND expressionexpression : LPAREN expression RPARENexpression : NUMBERexpression : STRINGexpression : IDexpression : ID LPAREN arg_list RPARENarg_list : arg_list COMMA expression\n                | expression\n                | emptyempty :'
     
-_lr_action_items = {'JUGADOR':([0,2,3,5,15,17,18,19,20,28,29,30,31,35,36,],[4,4,-3,-2,-4,-8,-13,-14,-15,-9,-10,-11,-12,-17,-16,]),'$end':([1,2,3,5,15,17,18,19,20,28,29,30,31,35,36,],[0,-1,-3,-2,-4,-8,-13,-14,-15,-9,-10,-11,-12,-17,-16,]),'ID':([4,7,12,16,21,22,23,24,25,26,37,],[6,8,14,20,20,20,20,20,20,20,20,]),'LPAREN':([6,16,20,21,22,23,24,25,26,37,],[7,21,26,21,21,21,21,21,21,21,]),'RPAREN':([7,8,9,10,14,18,19,20,26,27,28,29,30,31,32,33,34,35,36,38,],[-21,-6,11,-7,-5,-13,-14,-15,-21,35,-9,-10,-11,-12,36,-19,-20,-17,-16,-18,]),'COMMA':([7,8,9,10,14,18,19,20,26,28,29,30,31,32,33,34,35,36,38,],[-21,-6,12,-7,-5,-13,-14,-15,-21,-9,-10,-11,-12,37,-19,-20,-17,-16,-18,]),'COLON':([11,],[13,]),'REMATE':([13,],[16,]),'NUMBER':([16,21,22,23,24,25,26,37,],[19,19,19,19,19,19,19,19,]),'PLUS':([17,18,19,20,27,28,29,30,31,33,35,36,38,],[22,-13,-14,-15,22,-9,-10,-11,-12,22,-17,-16,22,]),'MINUS':([17,18,19,20,27,28,29,30,31,33,35,36,38,],[23,-13,-14,-15,23,-9,-10,-11,-12,23,-17,-16,23,]),'TIMES':([17,18,19,20,27,28,29,30,31,33,35,36,38,],[24,-13,-14,-15,24,24,24,-11,-12,24,-17,-16,24,]),'DIVIDE':([17,18,19,20,27,28,29,30,31,33,35,36,38,],[25,-13,-14,-15,25,25,25,-11,-12,25,-17,-16,25,]),}
+_lr_action_items = {'JUGADOR':([0,2,3,5,16,18,19,20,24,25,26,30,42,47,51,52,53,54,55,56,57,58,59,60,61,62,66,72,74,76,82,84,],[4,4,-3,-2,-33,-4,-8,-18,-19,-31,-32,-33,-11,-10,-30,-9,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-34,-38,-12,-16,-15,-17,]),'$end':([1,2,3,5,16,18,19,20,24,25,26,30,42,47,51,52,53,54,55,56,57,58,59,60,61,62,66,72,74,76,82,84,],[0,-1,-3,-2,-33,-4,-8,-18,-19,-31,-32,-33,-11,-10,-30,-9,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-34,-38,-12,-16,-15,-17,]),'ID':([4,7,12,15,17,21,22,23,27,28,31,32,33,34,35,36,37,38,39,40,41,44,67,68,73,80,83,],[6,8,14,16,30,30,30,46,30,30,16,30,30,30,30,30,30,30,30,30,30,30,30,16,30,16,16,]),'LPAREN':([6,15,16,17,21,22,27,28,30,31,32,33,34,35,36,37,38,39,40,41,44,67,68,70,73,80,83,],[7,17,28,17,17,44,17,17,28,17,17,17,17,17,17,17,17,17,17,17,17,17,17,73,17,17,17,]),'RPAREN':([7,8,9,10,14,25,26,28,29,30,48,49,50,51,53,54,55,56,57,58,59,60,61,62,64,66,71,77,],[-38,-6,11,-7,-5,-31,-32,-38,51,-33,66,-36,-37,-30,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,69,-34,-35,79,]),'COMMA':([7,8,9,10,14,25,26,28,30,48,49,50,51,53,54,55,56,57,58,59,60,61,62,66,71,],[-38,-6,12,-7,-5,-31,-32,-38,-33,67,-36,-37,-30,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-34,-35,]),'COLON':([11,25,26,30,43,45,51,53,54,55,56,57,58,59,60,61,62,66,69,75,79,],[13,-31,-32,-33,63,-14,-30,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-34,-13,78,81,]),'NEWLINE':([13,16,18,19,20,24,25,26,30,42,47,51,52,53,54,55,56,57,58,59,60,61,62,63,66,72,74,76,78,81,82,84,],[15,-33,31,-8,-18,-19,-31,-32,-33,-11,-10,-30,-9,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,68,-34,31,-12,-16,80,83,31,31,]),'REMATE':([15,31,68,80,83,],[21,21,21,21,21,]),'IF':([15,31,68,80,83,],[22,22,22,22,22,]),'FOR':([15,31,68,80,83,],[23,23,23,23,23,]),'NOP':([15,31,68,80,83,],[24,24,24,24,24,]),'NUMBER':([15,17,21,22,27,28,31,32,33,34,35,36,37,38,39,40,41,44,67,68,73,80,83,],[25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,]),'STRING':([15,17,21,22,27,28,31,32,33,34,35,36,37,38,39,40,41,44,67,68,73,80,83,],[26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,]),'ASSIGN':([16,],[27,]),'PLUS':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,32,-31,-32,32,-33,32,32,32,32,-30,-20,-21,-22,-23,32,32,32,32,32,32,32,-34,-30,32,32,]),'MINUS':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,33,-31,-32,33,-33,33,33,33,33,-30,-20,-21,-22,-23,33,33,33,33,33,33,33,-34,-30,33,33,]),'TIMES':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,34,-31,-32,34,-33,34,34,34,34,-30,34,34,-22,-23,34,34,34,34,34,34,34,-34,-30,34,34,]),'DIVIDE':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,35,-31,-32,35,-33,35,35,35,35,-30,35,35,-22,-23,35,35,35,35,35,35,35,-34,-30,35,35,]),'GT':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,36,-31,-32,36,-33,36,36,36,36,-30,-20,-21,-22,-23,36,36,36,36,36,36,36,-34,-30,36,36,]),'LT':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,37,-31,-32,37,-33,37,37,37,37,-30,-20,-21,-22,-23,37,37,37,37,37,37,37,-34,-30,37,37,]),'GE':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,38,-31,-32,38,-33,38,38,38,38,-30,-20,-21,-22,-23,38,38,38,38,38,38,38,-34,-30,38,38,]),'LE':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,39,-31,-32,39,-33,39,39,39,39,-30,-20,-21,-22,-23,39,39,39,39,39,39,39,-34,-30,39,39,]),'EQ':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,40,-31,-32,40,-33,40,40,40,40,-30,-20,-21,-22,-23,40,40,40,40,40,40,40,-34,-30,40,40,]),'AND':([16,20,25,26,29,30,42,45,47,49,51,53,54,55,56,57,58,59,60,61,62,64,66,69,71,77,],[-33,41,-31,-32,41,-33,41,41,41,41,-30,-20,-21,-22,-23,41,41,41,41,41,41,41,-34,-30,41,41,]),'ELSE':([16,19,20,24,25,26,30,42,47,51,52,53,54,55,56,57,58,59,60,61,62,66,72,74,76,82,84,],[-33,-8,-18,-19,-31,-32,-33,-11,-10,-30,-9,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-34,75,-12,-16,-15,-17,]),'EN':([46,],[65,]),'RANGE':([65,],[70,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'function_list':([0,],[2,]),'function':([0,2,],[3,5,]),'param_list':([7,],[9,]),'empty':([7,26,],[10,34,]),'statement':([13,],[15,]),'expression':([16,21,22,23,24,25,26,37,],[17,27,28,29,30,31,33,38,]),'primary':([16,21,22,23,24,25,26,37,],[18,18,18,18,18,18,18,18,]),'arg_list':([26,],[32,]),}
+_lr_goto_items = {'program':([0,],[1,]),'function_list':([0,],[2,]),'function':([0,2,],[3,5,]),'param_list':([7,],[9,]),'empty':([7,28,72,],[10,50,76,]),'block':([15,68,80,83,],[18,72,82,84,]),'statement':([15,31,68,80,83,],[19,52,19,19,19,]),'expression':([15,17,21,22,27,28,31,32,33,34,35,36,37,38,39,40,41,44,67,68,73,80,83,],[20,29,42,45,47,49,20,53,54,55,56,57,58,59,60,61,62,64,71,20,77,20,20,]),'if_condition':([22,],[43,]),'arg_list':([28,],[48,]),'else_clause':([72,],[74,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,25 +27,42 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> function_list','program',1,'p_program','futbolang_interpreter.py',94),
-  ('function_list -> function_list function','function_list',2,'p_function_list','futbolang_interpreter.py',98),
-  ('function_list -> function','function_list',1,'p_function_list','futbolang_interpreter.py',99),
-  ('function -> JUGADOR ID LPAREN param_list RPAREN COLON statement','function',7,'p_function','futbolang_interpreter.py',106),
-  ('param_list -> param_list COMMA ID','param_list',3,'p_param_list','futbolang_interpreter.py',113),
-  ('param_list -> ID','param_list',1,'p_param_list','futbolang_interpreter.py',114),
-  ('param_list -> empty','param_list',1,'p_param_list','futbolang_interpreter.py',115),
-  ('statement -> REMATE expression','statement',2,'p_statement','futbolang_interpreter.py',125),
-  ('expression -> expression PLUS expression','expression',3,'p_expression','futbolang_interpreter.py',132),
-  ('expression -> expression MINUS expression','expression',3,'p_expression','futbolang_interpreter.py',133),
-  ('expression -> expression TIMES expression','expression',3,'p_expression','futbolang_interpreter.py',134),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression','futbolang_interpreter.py',135),
-  ('expression -> primary','expression',1,'p_expression','futbolang_interpreter.py',136),
-  ('primary -> NUMBER','primary',1,'p_primary_number','futbolang_interpreter.py',146),
-  ('primary -> ID','primary',1,'p_primary_id','futbolang_interpreter.py',150),
-  ('primary -> ID LPAREN arg_list RPAREN','primary',4,'p_primary_fun_call','futbolang_interpreter.py',154),
-  ('primary -> LPAREN expression RPAREN','primary',3,'p_primary_paren','futbolang_interpreter.py',158),
-  ('arg_list -> arg_list COMMA expression','arg_list',3,'p_arg_list','futbolang_interpreter.py',162),
-  ('arg_list -> expression','arg_list',1,'p_arg_list','futbolang_interpreter.py',163),
-  ('arg_list -> empty','arg_list',1,'p_arg_list','futbolang_interpreter.py',164),
-  ('empty -> <empty>','empty',0,'p_empty','futbolang_interpreter.py',174),
+  ('program -> function_list','program',1,'p_program','futbolang_interpreter.py',118),
+  ('function_list -> function_list function','function_list',2,'p_function_list','futbolang_interpreter.py',122),
+  ('function_list -> function','function_list',1,'p_function_list','futbolang_interpreter.py',123),
+  ('function -> JUGADOR ID LPAREN param_list RPAREN COLON NEWLINE block','function',8,'p_function','futbolang_interpreter.py',130),
+  ('param_list -> param_list COMMA ID','param_list',3,'p_param_list','futbolang_interpreter.py',134),
+  ('param_list -> ID','param_list',1,'p_param_list','futbolang_interpreter.py',135),
+  ('param_list -> empty','param_list',1,'p_param_list','futbolang_interpreter.py',136),
+  ('block -> statement','block',1,'p_block','futbolang_interpreter.py',144),
+  ('block -> block NEWLINE statement','block',3,'p_block','futbolang_interpreter.py',145),
+  ('statement -> ID ASSIGN expression','statement',3,'p_statement_assign','futbolang_interpreter.py',153),
+  ('statement -> REMATE expression','statement',2,'p_statement_return','futbolang_interpreter.py',157),
+  ('statement -> IF if_condition COLON NEWLINE block else_clause','statement',6,'p_statement_if','futbolang_interpreter.py',163),
+  ('if_condition -> LPAREN expression RPAREN','if_condition',3,'p_if_condition','futbolang_interpreter.py',167),
+  ('if_condition -> expression','if_condition',1,'p_if_condition','futbolang_interpreter.py',168),
+  ('else_clause -> ELSE COLON NEWLINE block','else_clause',4,'p_else_clause','futbolang_interpreter.py',175),
+  ('else_clause -> empty','else_clause',1,'p_else_clause','futbolang_interpreter.py',176),
+  ('statement -> FOR ID EN RANGE LPAREN expression RPAREN COLON NEWLINE block','statement',10,'p_statement_for','futbolang_interpreter.py',184),
+  ('statement -> expression','statement',1,'p_statement_expr','futbolang_interpreter.py',189),
+  ('statement -> NOP','statement',1,'p_statement_nop','futbolang_interpreter.py',194),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','futbolang_interpreter.py',199),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','futbolang_interpreter.py',200),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','futbolang_interpreter.py',201),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','futbolang_interpreter.py',202),
+  ('expression -> expression GT expression','expression',3,'p_expression_compare','futbolang_interpreter.py',206),
+  ('expression -> expression LT expression','expression',3,'p_expression_compare','futbolang_interpreter.py',207),
+  ('expression -> expression GE expression','expression',3,'p_expression_compare','futbolang_interpreter.py',208),
+  ('expression -> expression LE expression','expression',3,'p_expression_compare','futbolang_interpreter.py',209),
+  ('expression -> expression EQ expression','expression',3,'p_expression_compare','futbolang_interpreter.py',210),
+  ('expression -> expression AND expression','expression',3,'p_expression_and','futbolang_interpreter.py',214),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','futbolang_interpreter.py',218),
+  ('expression -> NUMBER','expression',1,'p_expression_number','futbolang_interpreter.py',222),
+  ('expression -> STRING','expression',1,'p_expression_string','futbolang_interpreter.py',226),
+  ('expression -> ID','expression',1,'p_expression_id','futbolang_interpreter.py',230),
+  ('expression -> ID LPAREN arg_list RPAREN','expression',4,'p_expression_fun_call','futbolang_interpreter.py',234),
+  ('arg_list -> arg_list COMMA expression','arg_list',3,'p_arg_list','futbolang_interpreter.py',238),
+  ('arg_list -> expression','arg_list',1,'p_arg_list','futbolang_interpreter.py',239),
+  ('arg_list -> empty','arg_list',1,'p_arg_list','futbolang_interpreter.py',240),
+  ('empty -> <empty>','empty',0,'p_empty','futbolang_interpreter.py',247),
 ]

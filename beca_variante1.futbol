@@ -1,0 +1,39 @@
+jugador beca():
+    aceptados = 0
+    rechazados = 0
+    rechEdad = 0
+    rechIngreso = 0
+    rechPromedio = 0
+    delantero i en rango(5):
+        edad = int(entrenador.leer_texto("Ingrese edad: "))
+        ingreso = float(entrenador.leer_texto("Ingrese ingreso mensual: "))
+        promedio = float(entrenador.leer_texto("Ingrese promedio: "))
+        elegible = 1
+        tarjeta (edad > 18 y edad < 25):
+            nada
+        expulsado:
+            elegible = 0
+            rechEdad = rechEdad pase 1
+        tarjeta (ingreso < 5000):
+            nada
+        expulsado:
+            elegible = 0
+            rechIngreso = rechIngreso pase 1
+        tarjeta (promedio >= 90 y promedio <= 100):
+            nada
+        expulsado:
+            elegible = 0
+            rechPromedio = rechPromedio pase 1
+        tarjeta elegible:
+            aceptados = aceptados pase 1
+        expulsado:
+            rechazados = rechazados pase 1
+    golazo.imprimir("Alumnos aceptados: " pase aceptados)
+    golazo.imprimir("Alumnos rechazados: " pase rechazados)
+    golazo.imprimir("Rechazados por edad: " pase rechEdad)
+    golazo.imprimir("Rechazados por ingreso: " pase rechIngreso)
+    golazo.imprimir("Rechazados por promedio: " pase rechPromedio)
+    remate 0
+
+jugador principal():
+    remate beca()
