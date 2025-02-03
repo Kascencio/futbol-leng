@@ -1,126 +1,75 @@
-# Futbolang
+# Futbolang ⚽
 
-**Futbolang** es un lenguaje de programación conceptual inspirado en Python y en el fútbol. Utiliza términos futbolísticos para definir la sintaxis y la semántica, haciendo que funciones, operaciones y estructuras de control tengan nombres relacionados con el mundo del fútbol. Este repositorio incluye un intérprete básico escrito en Python utilizando [PLY (Python Lex-Yacc)](http://www.dabeaz.com/ply/), que permite ejecutar un subconjunto de Futbolang.
+![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
 
-## Tabla de Contenidos
+**Futbolang** es un lenguaje de programación experimental que combina la sintaxis de Python con terminología futbolística. ¡Convierte tus algoritmos en un emocionante partido de código!
 
-- [Características](#características)
-- [Requisitos](#requisitos)
-- [Instalación](#instalación)
-- [Uso](#uso)
-- [Ejemplos](#ejemplos)
-  - [Ejemplo 1: Suma Simple](#ejemplo-1--suma-simple)
-  - [Ejemplo 2: Cuadrado y Suma de Cuadrados](#ejemplo-2--cuadrado-y-suma-de-cuadrados)
-  - [Ejemplo 3: Cálculo del Promedio](#ejemplo-3--cálculo-del-promedio)
-  - [Ejemplo 4: Operación Compuesta con Funciones Anidadas](#ejemplo-4--operación-compuesta-con-funciones-anidadas)
+```python
+# Ejemplo: Sistema de Evaluación de Becas
+tarjeta nombre == "__jugador_principal__":
+    alumnos = [
+        {"edad": 22, "ingreso": 4000, "promedio": 95},
+        {"edad": 17, "ingreso": 3000, "promedio": 88}
+    ]
+    
+    delantero alumno en alumnos:
+        tarjeta alumno["edad"] < 19 o alumno["edad"] > 24:
+            golazo.imprimir("✖ Edad no válida")
+        expulsado:
+            golazo.imprimir("✓ ¡Beca aprobada!")
+```
+Tabla de Contenidos
+Características
 
-
-## Características
-
-- **Sintaxis futbolística:**  
-  - `jugador` para definir funciones (equivalente a `def` en Python).
-  - `remate` para retornar valores (equivalente a `return`).
-  - Operadores aritméticos con nombres futbolísticos:
-    - `pase` → suma.
-    - `regate` → resta.
-    - `tiro` → multiplicación.
-    - `intercepcion` → división.
-
-- **Intérprete Básico:**  
-  Utilizando PLY, el intérprete traduce el código de Futbolang a un AST (Árbol de Sintaxis Abstracta) y luego lo evalúa.
-
-## Requisitos
-
-- **Python 3.x**
-- **PLY (Python Lex-Yacc):**  
-  Puedes instalarlo con pip:
-  ```bash
-  pip install ply
+Instalación
 
 Uso
-El repositorio incluye el intérprete en el archivo futbolang_interpreter.py. Para ejecutar un programa escrito en Futbolang, utiliza el siguiente comando:
 
-```bash
-python futbolang_interpreter.py <archivo_fuente.futbol>
-```
-Por ejemplo, si tienes un archivo llamado ejemplo.futbol:
-```bash
-python futbolang_interpreter.py ejemplo.futbol
-```
+Sintaxis
 
+Ejemplos
 
-## Ejemplo 1: Suma Simple
-```bash
-Archivo: ejemplo.futbol
-jugador sumar(a, b):
-    remate a pase b
+Roadmap
 
-jugador principal():
-    remate sumar(10, 20)
-```
-- ** Explicación: **
+Contribuir
 
-jugador sumar(a, b): define una función llamada sumar que recibe dos parámetros.
-remate a pase b retorna la suma de a y b (usa pase para la suma).
-jugador principal(): define la función principal que llama a sumar con los argumentos 10 y 20.
-Resultado esperado: 30.
+Licencia
 
-## Ejemplo 2: Cuadrado y Suma de Cuadrados
-Archivo: ejemplo2.futbol
-```bash
-jugador cuadrado(x):
-    remate x tiro x
+Características 🏆
+Terminología futbolística: Estructuras de control con nombres de acciones del fútbol
 
-jugador sumaCuadrados(a, b):
-    remate cuadrado(a) pase cuadrado(b)
+Traducción a Python: Ejecuta código a través de Python 3.6+
 
-jugador principal():
-    remate sumaCuadrados(3, 4)
-```
+Tipado dinámico: Soporta todos los tipos de datos de Python
 
-- ** Explicación: **
+Manejo de errores: Mensajes claros con seguimiento de excepciones
 
-jugador cuadrado(x): define una función que calcula el cuadrado de x (usa tiro para la multiplicación).
-jugador sumaCuadrados(a, b): retorna la suma de los cuadrados de a y b.
-jugador principal(): llama a sumaCuadrados(3, 4).
-Resultado esperado: 9 + 16 = 25.
+F-strings: Soporte completo para cadenas formateadas
 
-## Ejemplo 3: Cálculo del Promedio
-Archivo: ejemplo3.futbol
+Instalación ⚙️
+Clona el repositorio:
+git clone https://github.com/tuusuario/futbolang.git
+cd futbolang
 
-```bash
-jugador promedio(a, b):
-    remate (a pase b) intercepcion 2
+Ejecuta los programas .futbol:
 
-jugador principal():
-    remate promedio(10, 20)
-```
-- Explicación:
+python futbolang.py ejemplo.futbol
 
-jugador promedio(a, b): calcula el promedio de a y b sumándolos (a pase b) y dividiendo el resultado entre 2 (intercepcion 2).
-jugador principal(): invoca promedio(10, 20).
-Resultado esperado: 15.
+Uso 🚀
+Ejecutar un programa:
+python futbolang.py programa.futbol
+Ejemplo interactivo con entrada de usuario:
+python futbolang.py becas_input.futbol
 
-## Ejemplo 4: Operación Compuesta con Funciones Anidadas
-Archivo: ejemplo4.futbol
-```bash
-jugador suma(a, b):
-    remate a pase b
-
-jugador resta(a, b):
-    remate a regate b
-
-jugador operacion(x, y):
-    remate suma(x, resta(x, y))
-
-jugador principal():
-    remate operacion(10, 3)
-```
-- Explicación:
-
-Se definen dos funciones básicas:
-suma(a, b) para sumar.
-resta(a, b) para restar.
-jugador operacion(x, y): realiza una operación compuesta: primero resta y de x y luego suma el resultado a x.
-jugador principal(): llama a operacion(10, 3).
-Resultado esperado: 10 + (10 - 3) = 17.
+Sintaxis 📖
+Futbolang	Python	Ejemplo
+tarjeta	if	tarjeta x > 5:
+amonestacion	elif	amonestacion x < 0:
+expulsado	else	expulsado:
+delantero	for	delantero i en range(5):
+golazo.imprimir	print	golazo.imprimir("Gol!")
+entrenador.leer_texto	input	edad = entrenador.leer_texto("Edad: ")
+Verdadero/Falso	True/False	rechazado = Falso
+F"texto"	f-strings	F"Alumno {nombre}"
