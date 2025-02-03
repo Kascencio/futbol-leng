@@ -1,0 +1,68 @@
+# Sistema de Becas con Entrada de Datos en Futbolang
+
+tarjeta nombre == "__jugador_principal__":
+    golazo.imprimir("=== SISTEMA DE EVALUACIÓN DE BECAS ===")
+    
+    # Solicitar número de alumnos
+    num_alumnos = entrenador.leer_texto("Ingrese el número de alumnos a evaluar: ")
+    num_alumnos = int(num_alumnos)
+    alumnos = []
+    
+    # Recoger datos de cada alumno (INDENTACIÓN CORRECTA)
+    delantero i en range(num_alumnos):
+        golazo.imprimir(F"\nAlumno {i + 1}:")
+        edad = int(entrenador.leer_texto("Edad: "))
+        ingreso = float(entrenador.leer_texto("Ingreso mensual familiar: "))
+        promedio = float(entrenador.leer_texto("Promedio académico: "))
+        
+        alumnos.append({
+            "edad": edad,
+            "ingreso": ingreso,
+            "promedio": promedio
+        })
+    
+    # Contadores
+    aceptados = 0
+    rechazados = 0
+    rechazos_edad = 0
+    rechazos_ingreso = 0
+    rechazos_promedio = 0
+
+    # Evaluar alumnos
+    delantero alumno en alumnos:
+        golazo.imprimir(F"\n--- Evaluando alumno: {alumno} ---")
+        rechazado = Falso
+        
+        # Validación edad (19-24 años)
+        tarjeta alumno["edad"] <= 18 o alumno["edad"] >= 25:
+            golazo.imprimir("  × Rechazado: Edad fuera del rango")
+            rechazos_edad += 1
+            rechazado = Verdadero
+        
+        # Validación ingreso (<5000)
+        tarjeta alumno["ingreso"] >= 5000:
+            golazo.imprimir("  × Rechazado: Ingreso familiar alto")
+            rechazos_ingreso += 1
+            rechazado = Verdadero
+        
+        # Validación promedio (90-100)
+        tarjeta alumno["promedio"] < 90 o alumno["promedio"] > 100:
+            golazo.imprimir("  × Rechazado: Promedio insuficiente")
+            rechazos_promedio += 1
+            rechazado = Verdadero
+        
+        tarjeta rechazado:
+            rechazados += 1
+        expulsado:
+            golazo.imprimir("  ✓ ¡BECA APROBADA!")
+            aceptados += 1
+    
+    # Resultados finales
+    golazo.imprimir("\n\n=== RESULTADOS FINALES ===")
+    golazo.imprimir(F"Total evaluados: {num_alumnos}")
+    golazo.imprimir(F"Aceptados: {aceptados}")
+    golazo.imprimir(F"Rechazados: {rechazados}")
+    golazo.imprimir("\nMotivos de rechazo:")
+    golazo.imprimir(F"  - Edad: {rechazos_edad}")
+    golazo.imprimir(F"  - Ingreso: {rechazos_ingreso}")
+    golazo.imprimir(F"  - Promedio: {rechazos_promedio}")

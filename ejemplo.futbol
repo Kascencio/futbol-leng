@@ -1,5 +1,0 @@
-jugador sumar(a, b):
-    remate a pase b
-
-jugador principal():
-    remate sumar(10, 20)

@@ -1,0 +1,2 @@
+tarjeta nombre == "__jugador_principal__":
+    golazo.imprimir("¡Hola, Mundo del Fútbol!")

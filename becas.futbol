@@ -1,0 +1,54 @@
+# Sistema de Evaluación de Becas en Futbolang (Versión Final)
+
+tarjeta nombre == "__jugador_principal__":
+    golazo.imprimir("Inicio del Sistema de Evaluación de Becas")
+    
+    alumnos = [
+        {"edad": 22, "ingreso": 4000, "promedio": 95},
+        {"edad": 17, "ingreso": 3000, "promedio": 88},
+        {"edad": 26, "ingreso": 3500, "promedio": 92},
+        {"edad": 23, "ingreso": 5500, "promedio": 85},
+        {"edad": 20, "ingreso": 3200, "promedio": 91}
+    ]
+    
+    # Contadores
+    total_alumnos = len(alumnos)
+    aceptados = 0
+    rechazados = 0
+    rechazos_edad = 0
+    rechazos_ingreso = 0
+    rechazos_promedio = 0
+
+    delantero alumno en alumnos:
+        golazo.imprimir(F"\n--- Evaluando alumno: {alumno} ---")
+        rechazado = Falso  # Ahora se traducirá a False
+
+        # Validación edad
+        tarjeta alumno["edad"] <= 18 o alumno["edad"] >= 25:
+            golazo.imprimir("  × Rechazado: Edad (19-24 años)")
+            rechazos_edad += 1
+            rechazado = Verdadero  # Se traducirá a True
+
+        # Validación ingreso
+        tarjeta alumno["ingreso"] >= 5000:
+            golazo.imprimir("  × Rechazado: Ingreso >= 5000")
+            rechazos_ingreso += 1
+            rechazado = Verdadero
+
+        # Validación promedio
+        tarjeta alumno["promedio"] < 90 o alumno["promedio"] > 100:
+            golazo.imprimir("  × Rechazado: Promedio (90-100)")
+            rechazos_promedio += 1
+            rechazado = Verdadero
+
+        tarjeta rechazado:
+            rechazados += 1
+        expulsado:
+            golazo.imprimir("  ✓ ¡BECA APROBADA!")
+            aceptados += 1
+
+    # Resultados finales
+    golazo.imprimir("\n\n=== RESULTADOS ===")
+    golazo.imprimir(F"Aceptados: {aceptados}")
+    golazo.imprimir(F"Rechazados: {rechazados}")
+    golazo.imprimir(F"Razones -> Edad: {rechazos_edad}, Ingreso: {rechazos_ingreso}, Promedio: {rechazos_promedio}")

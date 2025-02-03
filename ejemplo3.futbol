@@ -1,5 +1,0 @@
-jugador promedio(a, b):
-    remate (a pase b) intercepcion 2
-
-jugador principal():
-    remate promedio(10, 20)

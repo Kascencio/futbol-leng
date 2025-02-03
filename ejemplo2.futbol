@@ -1,8 +1,0 @@
-jugador cuadrado(x):
-    remate x tiro x
-
-jugador sumaCuadrados(a, b):
-    remate cuadrado(a) pase cuadrado(b)
-
-jugador principal():
-    remate sumaCuadrados(3, 4)
