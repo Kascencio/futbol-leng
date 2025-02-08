@@ -22,6 +22,7 @@ class FutbolangInterpreter:
             (r'\b__jugador_principal__\b', '__main__'),
             (r'\bVerdadero\b', 'True'),
             (r'\bFalso\b', 'False'),
+            (r'\bjugador\b', 'def'),
             
             # Operadores
             (r'\bo\b', 'or'),

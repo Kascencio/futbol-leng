@@ -1,0 +1,17 @@
+def rendimiento_jugador():
+    golazo.imprimir("=== Evaluación de Rendimiento del Jugador ===")
+    goles = int(entrenador.leer_texto("Ingrese cantidad de goles: "))
+    asistencias = int(entrenador.leer_texto("Ingrese cantidad de asistencias: "))
+    partidos = int(entrenador.leer_texto("Ingrese cantidad de partidos jugados: "))
+    rendimiento = (goles + asistencias) / partidos
+    golazo.imprimir("El rendimiento es:", rendimiento)
+
+    tarjeta rendimiento >= 1.5:
+        golazo.imprimir("Jugador estelar")
+    amonestacion rendimiento >= 1.0:
+        golazo.imprimir("Jugador destacado")
+    expulsado:
+        golazo.imprimir("Jugador en desarrollo")
+
+if __name__ == "__jugador_principal__":
+    rendimiento_jugador()

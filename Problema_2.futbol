@@ -1,0 +1,17 @@
+def ranking_equipos():
+    golazo.imprimir("=== Ranking de Equipos por Puntaje ===")
+    equipos = []  # Lista vacía para almacenar [nombre_equipo, puntaje] de cada equipo
+    for i in range(5):
+        nombre_equipo = entrenador.leer_texto("Ingrese el nombre del equipo: ")
+        puntaje = int(entrenador.leer_texto("Ingrese el puntaje del equipo: "))
+        equipos.append([nombre_equipo, puntaje])
+    
+    # Ordenar equipos de mayor a menor según puntaje
+    equipos.sort(key=lambda equipo: equipo[1], reverse=True)
+    
+    golazo.imprimir("Ranking de Equipos:")
+    for equipo in equipos:
+        golazo.imprimir(equipo[0], "-", equipo[1])
+
+if __name__ == "__jugador_principal__":
+    ranking_equipos()
